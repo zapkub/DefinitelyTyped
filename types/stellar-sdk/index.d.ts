@@ -7,6 +7,15 @@
 
 /// <reference types="node" />
 
+/*
+ * Required = 1 << 0
+ * Revocable = 1 << 1
+ * Immutable = 1 << 2
+ */
+export const AuthRequiredFlag: number
+export const AuthRevocableFlag: number
+export const AuthImmutableFlag: number
+
 export class Account {
     constructor(accountId: string, sequence: string | number)
     accountId(): string;
@@ -695,16 +704,7 @@ export namespace Operation {
     }
     function payment(options: PaymentOptions): xdr.Operation<Payment>;
 
-    /*
-     * Required = 1 << 0
-     * Revocable = 1 << 1
-     * Immutable = 1 << 2
-     */
-    enum AuthFlags {
-        Required = 1,
-        Revocable = 2,
-        Immutable = 4,
-    }
+   
     interface Signer {
         ed25519PublicKey?: string;
         sha256Hash?: Buffer | string;
